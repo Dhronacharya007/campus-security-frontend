@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Html5QrcodeScanner } from 'html5-qrcode';
+import { Html5QrcodeScanner, Html5QrcodeScanType } from 'html5-qrcode';
 import axios from 'axios';
 import { SERVER_URL } from '../config';
 
@@ -13,7 +13,7 @@ export default function ScanInScreen() {
         fps: 10,
         qrbox: 250,
         rememberLastUsedCamera: true,
-        supportedScanTypes: [Html5QrcodeScanner.SCAN_TYPE_CAMERA]  // force webcam
+        supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA] // ✅ fixed here
       },
       false
     );
