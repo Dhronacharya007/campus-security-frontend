@@ -18,6 +18,7 @@ export default function SecurityHomeScreen() {
     <div style={styles.container}>
       <h1 style={styles.heading}>Security Dashboard</h1>
       <div style={styles.buttonGroup}>
+        <button style={styles.button} onClick={() => navigate('/test-model')}>🧪 Test Model</button>
         <button style={styles.button} onClick={() => handleNavigation('/clips')}>🎥 Clips</button>
         <button style={styles.button} onClick={() => handleNavigation('/sos-map')}>🗺️ SOS Map</button>
         <button style={styles.button} onClick={() => handleNavigation('/generate-pass')}>🪪 Generate Pass</button>

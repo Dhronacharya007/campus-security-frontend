@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import VideoPlayer from '../components/VideoPlayer';
-import { SERVER_URL } from '../config';
+// Backend API base URL
+const SERVER_URL = 'https://b7cb-182-156-223-147.ngrok-free.app/clips';
 
 const SecurityVideosScreen = () => {
   const [clips, setClips] = useState([]);
   const [selectedClipUri, setSelectedClipUri] = useState(null);
 
   useEffect(() => {
-    fetch(`${SERVER_URL}/clips`)
-      .then(res => res.json())
-      .then(data => setClips(data))
-      .catch(err => console.error('Error fetching clips:', err));
+    fetch(`${SERVER_URL}/clips`, { mode: 'cors' })
+      .then(async (res) => {
+        // If the response is not OK, read text for error details (e.g., HTML error page)
+        if (!res.ok) {
+          const textErr = await res.text();
+          throw new Error(`Server error: ${res.status} - ${textErr}`);
+        }
+        return res.json();
+      })
+      .then(json => {
+        console.log("✅ Clips from backend:", json);
+        setClips(json.clips || []);
+      })
+      .catch(err => {
+        alert('❌ Failed to fetch video clips. Check console for more info.');
+        console.error("❌ Could not fetch or parse /clips:", err);
+      });
   }, []);
 
   if (selectedClipUri) {
@@ -35,7 +49,7 @@ const SecurityVideosScreen = () => {
           >
             <p style={styles.clipName}>{item.filename}</p>
             <p style={styles.classification}>Type: {item.classification}</p>
-            <p style={styles.time}>Timestamp: {new Date(item.timestamp * 1000).toLocaleString()}</p>
+            <p style={styles.time}>📅 {new Date(item.timestamp * 1000).toLocaleString()}</p>
           </div>
         ))
       )}
