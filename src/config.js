@@ -1,2 +1,2 @@
 // config.js
-export const SERVER_URL = 'https://cb88-182-156-223-147.ngrok-free.app';
+export const SERVER_URL = 'https://7db3-182-75-240-10.ngrok-free.app';
