@@ -10,11 +10,15 @@ export default function OverdueDashboard() {
     axios
       .get(`${SERVER_URL}/overdue-visitors`)
       .then(res => {
-        setVisitors(res.data || []);
+        // ✅ Safely get array from either direct array or object with .visitors
+        const data = res.data;
+        const visitorArray = Array.isArray(data) ? data : (data.visitors || []);
+        setVisitors(visitorArray);
         setLoading(false);
       })
       .catch(err => {
         console.error('Error fetching overdue visitors', err);
+        setVisitors([]); // fallback to empty array on error
         setLoading(false);
       });
   }, []);
