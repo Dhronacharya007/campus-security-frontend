@@ -5,11 +5,13 @@ import LoginScreen from './screens/LoginScreen';
 import SignupScreen from './screens/SignupScreen';
 import UserHomeScreen from './screens/UserHomeScreen';
 import SecurityHomeScreen from './screens/SecurityHomeScreen';
-import ProfileScreen from './screens/ProfileScreen'; // Single profile screen used for both roles
+import ProfileScreen from './screens/ProfileScreen';
 import GeneratePassScreen from './screens/GeneratePassScreen';
 import ScanInScreen from './screens/ScanInScreen';
 import ScanOutScreen from './screens/ScanOutScreen';
 import OverdueDashboard from './screens/OverdueDashboard';
+import SecurityVideosScreen from './screens/SecurityVideosScreen';
+import SecurityMapScreen from './screens/SecurityMapScreen';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/scan-in" element={<ScanInScreen />} />
         <Route path="/scan-out" element={<ScanOutScreen />} />
         <Route path="/overdue-dashboard" element={<OverdueDashboard />} />
+        <Route path="/clips" element={<SecurityVideosScreen />} />
+        <Route path="/sos-map" element={<SecurityMapScreen />} />
       </Routes>
     </Router>
   );
